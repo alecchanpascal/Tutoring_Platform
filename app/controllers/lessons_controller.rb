@@ -20,7 +20,7 @@ class LessonsController < ApplicationController
     end
 
     def edit
-
+        
     end
 
     def update
