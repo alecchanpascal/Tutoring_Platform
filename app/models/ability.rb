@@ -23,5 +23,3 @@ class Ability
         user == Review.user
     end
 end
-
-  end
