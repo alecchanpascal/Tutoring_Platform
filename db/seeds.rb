@@ -36,19 +36,22 @@ end
     )
 end
 #create 2 lessons for tutor_id = 1 and tutor_id  = 2
-Lesson.create(
-        subject: "rails1", 
-        description: "wow" ,
-        cost: 100, 
-        time_of_lesson: DateTime.new(2022, 8, 29, 22, 35, 0), 
-        tutor_id: 1);
 
-Lesson.create(
-        subject: "rails2", 
-        description: "wow" ,
-        cost: 100, 
-        time_of_lesson: DateTime.new(2022, 8, 29, 22, 35, 0), 
-        tutor_id: 2);   
+# Lesson.create(
+#         subject: "rails2", 
+#         description: "wow" ,
+#         cost: 100, 
+#         time_of_lesson: DateTime.new(2022, 8, 29, 22, 35, 0), 
+#         tutor_id: 2); 
+         
+(10..20).each do |i|
+  Lesson.create(
+    subject: Faker::Lorem.word, 
+    description: Faker::Lorem.paragraph ,
+    cost: 100, 
+    time_of_lesson: DateTime.new(2022, 8, 29, 22, 35, 0), 
+    tutor_id: 1);
+end
 
 #students from 1 to 5 are enrolled into lesson1 and left their review for lecture1
 (1..5).each do |i|

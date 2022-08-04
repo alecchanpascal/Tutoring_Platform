@@ -23,4 +23,5 @@ class User < ApplicationRecord
     #Enables User.tutors
     scope :tutors, -> {where(is_tutor:true)}
 
+
 end

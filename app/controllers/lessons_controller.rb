@@ -4,6 +4,10 @@ class LessonsController < ApplicationController
         @lesson = Lesson.new
     end
 
+    def show
+        @lesson = Lesson.find(params[:id])
+    end
+
     def create
         @lesson = Lesson.new(lesson_params)
         @lesson.user = current_user
