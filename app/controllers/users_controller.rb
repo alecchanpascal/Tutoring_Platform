@@ -9,13 +9,13 @@ class UsersController < ApplicationController
     def create
       @user = User.new load_users
       if @user.save
-        if User_isTutor?
-            redirect_to tutor_admin_dashboard_index_path(current_user.id), {notice: "Tutor Panel Logged In"}
-        else
+        # if User_isTutor?
+        #     redirect_to tutor_admin_dashboard_index_path(current_user.id), {notice: "Tutor Panel Logged In"}
+        # else
           session[:user_id] = @user.id
           flash.notice = "Signed up!"
           redirect_to lessons_path
-        end
+        # end
       else
         render :new, status: 303
       end
@@ -24,11 +24,11 @@ class UsersController < ApplicationController
 
 
       def edit
-        @lessons = Lesson.order(created_at: :desc)
+        # @lessons = Lesson.order(created_at: :desc)
       end
 
       def index
-        @lessons = Lesson.order(created_at: :desc)
+        # @lessons = Lesson.order(created_at: :desc)
 
       end
 
