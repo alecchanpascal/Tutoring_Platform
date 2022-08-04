@@ -6,28 +6,33 @@
                 <%# <li class="nav-item navbar-custom">
                     <a class="nav-link"  href=#> Admin Panel  </a>
                 </li> %>
+
            
                 <li class="nav-item navbar-custom">
                      <a class="nav-link" href="<%= new_enrollment_path %>"> New Course</a>
                 </li>
                 <% if user_sign_in? %>    
 
-                <li class="nav-item navbar-custom">
-                      <a class="nav-link"><%= current_user.username%></a>
-                </li>
-                <li class="nav-item navbar-custom">
-                    <%= button_to "Log out", session_path, method: :delete, class: "btn btn-danger" %>
-               
-                </li>
-                <% else %>
-           
-                <li class="nav-item navbar-custom">
-                     <a class="nav-link" href="<%= new_session_path %>"> Sign In</a>
-                </li>
 
-                <li class="nav-item navbar-custom">
-                     <a class="nav-link" href="<%= new_user_path %>"> Sign Up</a>
-                </li>
+                <% if user_sign_in? %>
+                    <% if User_isTutor? %>
+                        <li class="nav-item navbar-custom">
+                            <a  href="<%= tutor_admin_dashboard_index_path(current_user.id) %>">Hello Tutor <%= current_user.username %>  </a>
+                        </li>
+                    <% end %>
+
+                    <li class="nav-item navbar-custom">
+                        <%= button_to "Log out", session_path, method: :delete, class: "btn btn-danger" %>
+                    </li>
+                <% else %>
+
+                    <li class="nav-item navbar-custom">
+                        <a class="nav-link" href="<%= new_session_path %>"> Sign In</a>
+                    </li>
+
+                    <li class="nav-item navbar-custom">
+                        <a class="nav-link" href="<%= new_user_path %>"> Sign Up</a>
+                    </li>
                 <% end %>
             </ul>
     </nav>
