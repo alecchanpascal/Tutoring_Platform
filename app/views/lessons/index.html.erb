@@ -1,14 +1,9 @@
 <% @lessons.each do |lesson| %>
 <hr>
-    <p> Subject: <%= lesson.subject %> </p>
+<p> Subject: <a class="nav-link" href="<%= lesson_path(lesson.id) %>"> <%= lesson.subject %> </p></a>    
     <p> Description: <%= lesson.description %> </p>
     <p> Cost: <%= lesson.cost %> </p>
     <p> Time: <%= lesson.time_of_lesson %> </p>
     <p> Tutor name: <%= lesson.tutor.username %> </p>
 <% end %>
-<<<<<<< Updated upstream
 <hr>
-=======
-<hr>
-
->>>>>>> Stashed changes

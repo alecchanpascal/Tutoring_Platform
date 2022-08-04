@@ -7,9 +7,9 @@ class SessionsController < ApplicationController
         @user = User.find_by_email params[:email]
         if @user && @user.authenticate(params[:password])
         session[:user_id] = @user.id
-        redirect_to lessons_path, {notice: "Logged In"}
+            redirect_to lessons_path, {notice: "Logged In"}
         else
-        render :new, {alert: "Wrong email or password!", status: 303}
+            render :new, {alert: "Wrong email or password!", status: 303}
         end
     end
 
