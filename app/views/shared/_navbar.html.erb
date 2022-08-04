@@ -1,7 +1,7 @@
 
 <header class="navbar-custom" >
     <nav class="navbar navbar-expand-lg  bg-light" style="width:100%">
-        <a class="navbar-brand" style="margin-left: 10px; href="<%= root_path %>">Blog On Rails</a>
+        <a class="navbar-brand" style="margin-left: 10px;" href="<%= root_path %>">TutorMe</a>
             <ul class="navbar-nav ms-auto" >
                 <%# <li class="nav-item navbar-custom">
                     <a class="nav-link"  href=#> Admin Panel  </a>
@@ -13,7 +13,7 @@
                 <% if user_sign_in? %>    
 
                 <li class="nav-item navbar-custom">
-                      <%  current_user.name %>
+                      <a class="nav-link"><%= current_user.username%></a>
                 </li>
                 <li class="nav-item navbar-custom">
                     <%= button_to "Log out", session_path, method: :delete, class: "btn btn-danger" %>

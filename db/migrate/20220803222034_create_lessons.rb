@@ -6,6 +6,7 @@ class CreateLessons < ActiveRecord::Migration[7.0]
       t.integer :cost
       t.datetime :time_of_lesson
       t.references :tutor, index: true, foreign_key: {to_table: :users}
+
       t.timestamps
     end
   end
