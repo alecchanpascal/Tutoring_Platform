@@ -7,9 +7,12 @@
                     <a class="nav-link"  href=#> Admin Panel  </a>
                 </li> %>
 
-                <%# <li class="nav-item navbar-custom">
-                     <a class="nav-link" href="#"> ??? </a>
-                </li> %>
+           
+                <li class="nav-item navbar-custom">
+                     <a class="nav-link" href="<%= new_enrollment_path %>"> New Course</a>
+                </li>
+                <% if user_sign_in? %>    
+
 
                 <% if user_sign_in? %>
                     <% if User_isTutor? %>
