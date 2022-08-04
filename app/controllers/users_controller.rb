@@ -8,7 +8,7 @@ class UsersController < ApplicationController
         if @user.save
           session[:user_id] = @user.id
           flash.notice = "Signed up!"
-          redirect_to root_path
+          redirect_to lessons_path
         else
           render :new, status: 303
         end 
