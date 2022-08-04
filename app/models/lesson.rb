@@ -1,4 +1,5 @@
 class Lesson < ApplicationRecord
+
   #Links to a User under alias of "tutor"
   belongs_to :tutor, :class_name => "User"
 
@@ -21,4 +22,5 @@ class Lesson < ApplicationRecord
     return unless(time_of_lesson < DateTime.now) 
     errors.add(:time_of_lesson, "time_of_lesson must be after created_at")
   end
+
 end
