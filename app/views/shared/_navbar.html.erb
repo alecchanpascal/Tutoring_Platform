@@ -13,7 +13,7 @@
                 <% if user_sign_in? %>    
 
                 <li class="nav-item navbar-custom">
-                      <%  current_user.name %>
+                      <%  current_user.username %>
                 </li>
                 <li class="nav-item navbar-custom">
                     <%= button_to "Log out", session_path, method: :delete, class: "btn btn-danger" %>
