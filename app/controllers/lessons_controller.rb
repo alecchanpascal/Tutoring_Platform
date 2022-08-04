@@ -1,5 +1,4 @@
 class LessonsController < ApplicationController
-
     def new
         @lesson = Lesson.new
     end
@@ -10,6 +9,10 @@ class LessonsController < ApplicationController
 
     def index
         @lessons = Lesson.order(created_at: :desc)
+    end
+
+    def show
+        
     end
 
     def edit
