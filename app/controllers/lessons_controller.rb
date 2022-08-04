@@ -6,6 +6,13 @@ class LessonsController < ApplicationController
 
     def create
         @lesson = Lesson.new(lesson_params)
+        @lesson.user = current_user
+        if @lesson.save
+            flash[:notice]= "Lesson created successfully!"
+            redirect_to lesson_path(@lesson)
+        else
+            render :new
+        end
     end
 
     def index
@@ -17,11 +24,16 @@ class LessonsController < ApplicationController
     end
 
     def update
-        
+        if @lesson.update(lesson_params)
+            redirect_to lesson_path(@lesson)
+          else
+            render :edit
+          end
     end
 
     def destroy
-
+        @lesson.destroy
+        redirect_to lessons_path
     end
 
     private
