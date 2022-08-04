@@ -68,8 +68,8 @@ reivews = Review.all
 lessons = Lesson.all
 
 
-puts Cowsay.say("Generated #{users.count} questions", :frogs)
-puts Cowsay.say("Generated #{enrollment.count} answers", :dragon)
-puts Cowsay.say("Generated #{reivews.count} users", :koala)
-puts Cowsay.say("Generated #{lessons.count} likes", :cow)
+puts Cowsay.say("Generated #{users.count} users", :frogs)
+puts Cowsay.say("Generated #{enrollment.count} enrollment", :dragon)
+puts Cowsay.say("Generated #{reivews.count} reviews", :koala)
+puts Cowsay.say("Generated #{lessons.count} lessons", :cow)
 
