@@ -12,6 +12,10 @@ Rails.application.routes.draw do
   namespace :dashboard do
     resources :admin
   end
+
+  resources :button, only: [:index] do
+    resources :click, only: [:create]
+  end
   # namespace :tutor_admin do
   #   resources :dashboard, only: [:index, :edit, :destroy]
   # end
