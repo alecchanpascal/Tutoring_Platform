@@ -4,7 +4,7 @@
 <h4> 
 <small>Total Number of Students <%= @accepted_students_array.count%> <small>
 <p> Cost: <%= @lesson.cost %> </p>
-<p> Time: <%= @lesson.time_of_lesson %> </p>
+<p> Time Taking Place: <%= time_ago_in_words(@lesson.time_of_lesson) %> </p>
 <a href="<%= user_path(@lesson.tutor.id)%>"> Tutor name: <%= @lesson.tutor.username %> </a>
 <ul>
 <h4> Accepted Students List </h4>
@@ -34,8 +34,10 @@
 
         <%= link_to 'Accept', lesson_path(@lesson, :event_option => true), class: "btn btn-outline-primary btn-md " %>
         <%= link_to 'Deny', lesson_path(@lesson), class: "btn btn-outline-primary btn-md " %>
-       <%#= button_to "Accept", lesson_path(@lesson, :event_option => false), class: 'btn btn-outline-primary btn-md',form: { data: { turbo_confirm: "Are you sure?" } }  %>
-       <%#= button_to "Deny", lesson_path(@lesson), class: 'btn btn-outline-primary btn-md',form: { data: { turbo_confirm: "Are you sure?" } }  %>   
+       <%#= button_to "Accept", lesson_path(@lesson), class: 'btn btn-outline-primary btn-md',, method: :get, params: { start_point: 3.month.ago } %form: { data: { turbo_confirm: "Are you sure?" } }  %>
+       <%#= button_to "Deny", lesson_path(@lesson), class: 'btn btn-outline-primary btn-md',form: { data: { turbo_confirm: "Are you sure?" } } 
+       <%= button_to "Deny", lesson_path(@lesson), method: :get, params: { acceptable: false,  registered, false} %>   
+       #some_path, method: :get, params: { start_point: 3.month.ago } %>   
     </li>
 <% end %>
     
