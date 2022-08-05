@@ -13,10 +13,7 @@ class Dashboard::AdminController < ApplicationController
   end
 
   def update
-      p params
       if @lesson.update params.require(:lesson).permit(:subject, :description, :cost, :time_of_lesson)
-          #redirect_to ?????????????
-          p worked!
       else
           render :edit
       end
@@ -29,18 +26,12 @@ class Dashboard::AdminController < ApplicationController
       redirect_to lessons_path
     else
       render '/admin/index', status: 303 
-      # 303 See Other redirect status response code indicates that the redirects don't link to the requested resource itself, but to another page (such as a confirmation page, a representation of a real-world object
     end
   end
 
-#   def show
-#     @lesson = Lesson.tutor_id(current_user.id)     
-#     @students = Enrollment.student_id
-#   end
   private
 
   def find_lessons
     @lesson = Lesson.find_by_id(params[:tutor_id])
   end
 end
-# end

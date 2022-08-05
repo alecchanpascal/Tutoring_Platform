@@ -20,6 +20,7 @@ class ApplicationController < ActionController::Base
         current_user.is_tutor
     end
     helper_method :tutor_check?
+    
     # if it is a tutor, you not allowed to register course
     def is_student?
         redirect_to new_session_path,  notice: "A student can not register a course" if current_user.is_tutor == false
