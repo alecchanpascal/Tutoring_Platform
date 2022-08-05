@@ -5,6 +5,8 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       t.string :email
       t.string :password_digest
       t.boolean :is_tutor
+      t.boolean :is_accepted, default: false
+      t.boolean :is_registered, default: false
 
       t.timestamps
     end
