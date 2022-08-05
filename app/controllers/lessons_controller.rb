@@ -60,9 +60,23 @@ class LessonsController < ApplicationController
         else
             render :edit
         end    
-
     end
 
+
+    def destroy
+        @lesson = Lesson.find_by_id(params[:id])
+        if @lesson.present?
+            array_of_enrollments_related_to_lesson = Enrollment.find_lesson_id(@lesson.id)
+            array_of_enrollments_related_to_lesson.each do |enrollment|
+                enrollment.destroy
+            end
+            @lesson.destroy
+            redirect_to lessons_path
+        else
+            render :show
+        end
+    end
+    
     private
 
     def find_lesson_id

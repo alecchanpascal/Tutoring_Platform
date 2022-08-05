@@ -11,22 +11,26 @@ class EnrollmentsController < ApplicationController
     
     def create
         @enrollment = Enrollment.new
-        p "------  Create Enrollment"
+        p "------  Create Enrollment1", "lecture_id",  params[:enrollment][:lesson_id].to_i
+        enrollment = Enrollment.find_by( lesson_id: params[:enrollment][:lesson_id])
+        p "----------" 
+        p "current_user.id", current_user.id #this shows up
         if is_duplicated?(current_user.id, params[:enrollment][:lesson_id].to_i)
-            p "------  Create Enrollment"
+            p "------  Create Enrollment2"
             @enrollment.student_id = params[:enrollment][:lesson_id].to_i
             @enrollment.lesson_id = current_user.id
-        
+            p "------  11111-----------"
             p params, @enrollment, params[:enrollment][:lesson_id].to_i
-            if @enrollment.save
-                flash[:notice] = "Entrollment created Successfully!"
-                p @enrollment
-                redirect_to root_path
-            else
+            p "------ 222222 -----------"
+            # if @enrollment.save
+            #     flash[:notice] = "Entrollment created Successfully!"
+            #     p @enrollment
+            #     redirect_to root_path
+            # else
                 render :new
-            end
+            # end
         else
-            flash[:danger] = "You have registered that course!"
+            flash[:danger] = "You didn't register!"
             redirect_to root_path
         end
     end
