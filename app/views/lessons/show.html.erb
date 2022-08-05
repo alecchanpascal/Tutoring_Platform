@@ -1,20 +1,18 @@
 
 <h4>Subject: <%= @lesson.subject %> </h4>
 <h5> Subject Description: <%= @lesson.description %> </h5>
-<h4> 
-<small>Total Number of Students <%= @accepted_students_array.count%> <small>
 <p> Cost: <%= @lesson.cost %> </p>
 <p> Time Taking Place: <%= time_ago_in_words(@lesson.time_of_lesson) %> </p>
 <a href="<%= user_path(@lesson.tutor.id)%>"> Tutor name: <%= @lesson.tutor.username %> </a>
 <ul>
-<h4> Accepted Students List </h4>
-<% @accepted_students_array.each do | student | %>
- <li> 
-    Student Name: <%= student.username %> 
-    Email: <%= student.email %> 
+<% @student_array.each do | student | %>
+ <li>
+    Student Name: <%= student.username %>
+    Email: <%= student.email %>
 </li>
 <% end %>
 </ul>
+
 <% if current_user.is_tutor != true %>
 
 <% else %>

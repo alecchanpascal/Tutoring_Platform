@@ -24,8 +24,10 @@
                 <li class="nav-item navbar-custom">
                      <a class="nav-link" style="color: #81b3d2"  href="<%= new_enrollment_path %>"> Register Lesson</a>
                 </li>
+
                 <% end %>
                 <% end %>
+
                 <% if user_sign_in? %>
                     <% if current_user.is_tutor == true %>
                         <li class="nav-item navbar-custom">
@@ -46,7 +48,9 @@
                     </li>
 
                     <li class="nav-item navbar-custom">
+
                         <a class="nav-link" style="color: #81b3d2" href="<%= new_user_path %>"> Sign Up</a>
+
                     </li>
                 <% end %>
             </ul>
