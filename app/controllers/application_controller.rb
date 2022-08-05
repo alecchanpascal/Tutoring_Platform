@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
         redirect_to new_session_path,  notice: "Please sign up" unless user_sign_in?
     end
     
-     def User_isTutor?
+    def User_isTutor?
       current_user.is_tutor
     end
     helper_method :User_isTutor?

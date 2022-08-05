@@ -18,8 +18,15 @@
     <%= f.date_select :time_of_lesson%>
 </div>
 <div>
-   <%= f.submit "Create Lesson!", class: "btn btn-outline-primary btn-md"%>
+   <%= f.submit "Create Post", class: "btn btn-outline-primary btn-md"%>
 </div>
 <% end %>
 
 
+<% if @lesson.errors.any? %>
+  <ul>
+    <%  @lesson.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
