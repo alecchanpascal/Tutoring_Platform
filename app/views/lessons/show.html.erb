@@ -1,10 +1,21 @@
-<p> <%= @lesson.subject %> </p>  
-<p> ID: <%= @lesson.id %> </p>
-<p> Description: <%= @lesson.description %> </p>
+
+<h4>Subject: <%= @lesson.subject %> </h4>
+<h5> Subject Description: <%= @lesson.description %> </h5>
+<h4> 
+<small>Total Number of Students <%= @student_array.count%> <small>
 <p> Cost: <%= @lesson.cost %> </p>
 <p> Time: <%= @lesson.time_of_lesson %> </p>
 <p> Tutor name: <%= @lesson.tutor.username %> </p>
+<ul>
+<% @student_array.each do | student | %>
+ <li> 
+    Student Name: <%= student.username %> 
+    Email: <%= student.email %> 
+</li>
+<% end %>
+</ul>
+<div class="btn-group">
+<%= link_to 'Edit', edit_lesson_path(@lesson), class: "btn btn-outline-primary btn-md " %>
+<%= button_to "Delete", lesson_path(@lesson), method: :delete, class: 'btn btn-outline-primary btn-md',form: { data: { turbo_confirm: "Are you sure?" } }  %>
+</div>
 
-<%= link_to 'Edit', edit_dashboard_admin_path(@lesson.id) %>
-<%#= button_to 'Edit', edit_dashboard_admin_path(@lesson.id,:method => :put) %>  
-<%= button_to 'Delete', dashboard_admin_path(@lesson.id), method: :delete, form: { data: { turbo_confirm: "Are you sure?" } }  %>  

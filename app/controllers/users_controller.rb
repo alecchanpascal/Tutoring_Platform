@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
     def new
         @user = User.new
-      end
+    end
 
     def create
       @user = User.new load_users
@@ -15,27 +15,12 @@ class UsersController < ApplicationController
           session[:user_id] = @user.id
           flash.notice = "Signed up!"
           redirect_to lessons_path
-        # end
+
       else
         render :new, status: 303
       end
 
     end
-
-
-      def edit
-        # @lessons = Lesson.order(created_at: :desc)
-      end
-
-      def index
-        # @lessons = Lesson.order(created_at: :desc)
-
-      end
-
-
-
-
-
 
 
 

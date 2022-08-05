@@ -5,15 +5,14 @@ Rails.application.routes.draw do
   resources :enrollments, only: [:new, :create, :destroy]
   resources :users, only: [:new, :create]
   root "welcome#new"
-  # get "/admin/:id/edit" => "admin#edit", as: :admin_edit
-  # delete "/admin/:id" => "admin#destroy", as: :admin_destroy
-  # get "/admins" => "admin#index"
-  
-  # post "/admin/:id/update" => "admin#update", as: :admin_update
+  resource :review, only: [:edit, :update,:destroy]
 
   namespace :dashboard do
     resources :admin
   end
+  # namespace :tutor_admin do
+  #   resources :dashboard, only: [:index, :edit, :destroy]
+  # end
 
   
 end
