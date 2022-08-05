@@ -37,6 +37,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_04_024919) do
   create_table "reviews", force: :cascade do |t|
     t.integer "rating"
     t.text "body"
+    t.boolean "published", default: false
     t.bigint "student_id"
     t.bigint "tutor_id"
     t.datetime "created_at", null: false

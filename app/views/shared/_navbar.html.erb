@@ -3,9 +3,10 @@
     <nav class="navbar navbar-expand-lg  bg-light" style="width:100%">
         <a class="navbar-brand" style="margin-left: 10px;" href="<%= root_path %>">TutorMe</a>
             <ul class="navbar-nav ms-auto" >
-                <%# <li class="nav-item navbar-custom">
-                    <a class="nav-link"  href=#> Admin Panel  </a>
-                </li> %>
+                <li class="nav-item navbar-custom">
+                    <a class="nav-link"  href="<%= users_path %>"> Tutors  </a>
+                </li>
+
                 <li class="nav-item navbar-custom">
                      <a class="nav-link" href="<%= lessons_path %>"> Lessons</a>
                 </li>
@@ -20,10 +21,10 @@
 
                 <% if user_sign_in? %>
                     <%# if User_isTutor? %>
-                        <li class="nav-item navbar-custom">
+                    <li class="nav-item navbar-custom">
               
 
-                        <a href=<% dashboard_admin_index_path %> ><%= tutor_check? ? "Hello Tutor:" : "Hello Student:"  %> <%= current_user.username %>  </a>
+                        <a href=<%= dashboard_admin_index_path %> ><%= tutor_check? ? "Hello Tutor:" : "Hello Student:"  %> <%= current_user.username %>  </a>
 
                     <li class="nav-item navbar-custom">
                         <%= button_to "Log out", session_path, method: :delete, class: "btn btn-danger" %>
