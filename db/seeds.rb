@@ -15,6 +15,14 @@ User.destroy_all
 
 PASSWORD = 123
 
+# tutor admin user as the first user in the DB
+User.create(
+  username: "admin",
+  email: "admin@user.com",
+  password: "#{PASSWORD}",
+  is_tutor: true
+)
+
 #create ten students
 10.times do 
     username = Faker::Name.first_name
