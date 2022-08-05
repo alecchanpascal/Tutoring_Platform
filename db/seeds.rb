@@ -24,7 +24,7 @@ User.create(
 )
 
 #create ten students
-15.times do 
+10.times do 
     username = Faker::Name.first_name
     User.create(
       username: username,
@@ -33,16 +33,8 @@ User.create(
       is_tutor: false
     )
 end
+
 # create 2 teachers
-# 2.times do 
-#     username = Faker::Name.first_name
-#     User.create(
-#       username: username,
-#       email: "#{username}@g.com",
-#       password: "#{PASSWORD}",
-#       is_tutor: true
-#     )
-# end
 2.times do |i|
     username = "something#{i}"
     User.create(
@@ -53,13 +45,13 @@ end
     )
 end
 
-#create 2 lessons for tutor_id = 11 and tutor_id  = 12
+#create 2 lessons for tutor_id = 12 and tutor_id  = 13
 Lesson.create(
         subject: "rails1", 
         description: "wow" ,
         cost: 100, 
         time_of_lesson: DateTime.new(2022, 8, 29, 22, 35, 0), 
-        tutor_id: 11
+        tutor_id: 12
         );
 
 
@@ -68,27 +60,19 @@ Lesson.create(
         description: "wow" ,
         cost: 100, 
         time_of_lesson: DateTime.new(2022, 8, 29, 22, 35, 0), 
-        tutor_id: 12
+        tutor_id: 13
       );   
 
-#students from 1 to 5 are enrolled into lesson1 and left their review for tutor_id 11
+#students from 1 to 5 are enrolled into lesson1 and left their review for tutor_id 12
 (1..5).each do |i|
-    Enrollment.create(student_id: i, lesson_id: 1);
-    student = User.find_by_id(i)
-    student.is_accepted = true
-    student.is_registered = true
-    student.save!
-    Review.create(rating:rand(1..5), body: Faker::Hacker.say_something_smart, student_id: i, tutor_id: 11)
+    Enrollment.create(student_id: i, lesson_id: 1, is_accepted: false);
+    Review.create(rating:rand(1..5), body: Faker::Hacker.say_something_smart, student_id: i, tutor_id: 12)
 end
 
-#students from 6 to 10 are enrolled into lesson1 and left their review for tutor_id 12
+#students from 6 to 10 are enrolled into lesson1 and left their review for tutor_id 13
 (6..10).each do |i|
-    Enrollment.create(student_id: i, lesson_id: 2);
-    student = User.find_by_id(i)
-    student.is_accepted = true
-    student.is_registered = true
-    student.save! 
-    Review.create(rating:rand(1..5), body: Faker::Hacker.say_something_smart, student_id: i, tutor_id: 12)
+    Enrollment.create(student_id: i, lesson_id: 2, is_accepted: false);
+    Review.create(rating:rand(1..5), body: Faker::Hacker.say_something_smart, student_id: i, tutor_id: 13)
 end
 
 

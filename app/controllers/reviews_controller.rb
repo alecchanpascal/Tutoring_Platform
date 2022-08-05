@@ -24,14 +24,14 @@ class ReviewsController < ApplicationController
     def update
         if !current_user.is_tutor
             if @review.update(params.require(:review).permit(:rating, :body))
-                redirect_to user_path(@user)
+                redirect_to dashboard_admin_index_path
                 flash[:Notice] = "Review updated"
             else
                 flash[:Error] = @review.errors.full_messages.to_sentence
                 @review = @user.reviews_for.order(created_at: :desc)
                 @lessons = @user.lessons.order(time_of_lesson: :asc)
                 @review = Review.new
-                redirect_to user_path(@user), status: 303
+                redirect_to dashboard_admin_index_path, status: 303
             end
         elsif current_user == @user
             if @review.update({published: true})
@@ -48,13 +48,16 @@ class ReviewsController < ApplicationController
     end
 
     def destroy
-        if can?(:delete, @review)
-            @review.destroy
-            redirect_to user_path(@user)
-            flash[:Notice] = "Review deleted"
+        if @review.destroy
+            redirect_to dashboard_admin_index_path
+            if current_user.is_tutor == true
+                flash[:Notice] = "Review denied"
+            else
+                flash[:Notice] = "Review cancelled"
+            end
         else
-            flash[:Alert] = "Not authorized!"
-            redirect_to user_path(@user), status: 303
+            flash[:Error] = @review.errors.full_messages.to_sentence
+            redirect_to dashboard_admin_index_path, status: 303
         end
     end
 

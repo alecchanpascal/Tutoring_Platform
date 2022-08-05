@@ -1,6 +1,6 @@
 <%= form_with(model: @enrollment) do |f| %>  
   <div>
-    <%= f.hidden_field :student_id, value: current_user.id.to_s %>
+    <%= f.hidden_field :student_id, value: current_user.id%>
     <%= f.select :lesson_id,  options_for_select(@lessons.collect{ |ls| [ls.subject, ls.id] })%>
   </div>
   <%= f.submit "Register", class: "btn btn-outline-primary btn-md " %>

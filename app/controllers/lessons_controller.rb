@@ -17,7 +17,8 @@ class LessonsController < ApplicationController
         p "create lesson"
         if current_user.is_tutor
             @lesson.tutor_id = current_user.id
-            p "ERRORRRR" , @lesson.errors.messages
+            p "ERRORRRR" 
+            flash[:error] = @lesson.errors.full_messages.to_sentence
             if @lesson.save
                 flash[:notice]= "Lesson created successfully!"
                 redirect_to lessons_path
@@ -35,6 +36,7 @@ class LessonsController < ApplicationController
     def index
         @lessons = Lesson.order(created_at: :desc)
     end
+
     def show
         p "Lesson show"
         @lesson = Lesson.find_by_id(params[:id])
@@ -45,10 +47,10 @@ class LessonsController < ApplicationController
         @not_accepted_students_array = []
         @lesson.enrollments.each do |enrollment|
             student = User.find_by(id: enrollment.student_id)
-            if student.is_tutor != true && student.is_registered && student.is_accepted 
+            if student.is_tutor != true && enrollment.is_accepted 
                 p "-----accepted students-----", student
                 @accepted_students_array.push(student)
-            elsif student.is_tutor != true && student.is_registered == false && student.is_accepted == false
+            elsif student.is_tutor != true && enrollment.is_accepted == false
                 @not_accepted_students_array.push(student)
             end
         end
