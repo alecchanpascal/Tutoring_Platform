@@ -7,23 +7,32 @@
                     <a class="nav-link"  href=#> Admin Panel  </a>
                 </li> %>
                 <li class="nav-item navbar-custom">
-                     <a class="nav-link" href="<%= lessons_path %>"> Lessons</a>
+                <a class="nav-link" href="<%= lessons_path %>"> Lessons</a>
                 </li>
-
+                <li>
+                <% if current_user.present? %>
+                <% if current_user.is_tutor %>
+               
                 <li class="nav-item navbar-custom">
-                     <a class="nav-link" href="<%= new_lesson_path %>"> Create Lessons </a>
-                </li>
+                <a class="nav-link" href="<%= new_lesson_path %>"> Create Lessons </a>
+                 </li>
+                 <% else %>
                 <li class="nav-item navbar-custom">
                      <a class="nav-link" href="<%= new_enrollment_path %>"> Register Lesson</a>
                 </li>
-             
+                <% end %>
+                <% end %>
 
                 <% if user_sign_in? %>
                     <%# if User_isTutor? %>
                         <li class="nav-item navbar-custom">
-              
-
-                        <a href=<% dashboard_admin_index_path %> ><%= tutor_check? ? "Hello Tutor:" : "Hello Student:"  %> <%= current_user.username %>  </a>
+               
+                    <% if tutor_check? != false %>
+                        <a href="<%= lessons_path%>" > Hello Student: <%= current_user.username %></a>
+                    <% else %>
+                        <a href="<%= lessons_path%>" > Hello Tutor: <%= current_user.username %></a> 
+                    <% end %>
+                    
 
                     <li class="nav-item navbar-custom">
                         <%= button_to "Log out", session_path, method: :delete, class: "btn btn-danger" %>

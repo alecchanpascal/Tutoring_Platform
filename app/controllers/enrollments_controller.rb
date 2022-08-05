@@ -46,7 +46,9 @@ class EnrollmentsController < ApplicationController
             p params, @enrollment, params[:enrollment][:lesson_id].to_i
             p "------ 222222 -----------"
             if @enrollment.save!
-                flash[:notice] = "Entrollment created Successfully!"
+                @enrollment.is_registered = true
+                @enrollment.save!
+                flash[:notice] = "Enrollment created Successfully!"
                 p @enrollment
                 redirect_to root_path
             else
