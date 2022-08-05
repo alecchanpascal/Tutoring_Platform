@@ -1,11 +1,11 @@
 class LessonsController < ApplicationController
+    before_action :find_lesson_id
 
     def new
         @lesson = Lesson.new
     end
 
     def show
-        @lesson = Lesson.find(params[:id])
     end
 
     def create
@@ -30,17 +30,24 @@ class LessonsController < ApplicationController
     def update
         if @lesson.update(lesson_params)
             redirect_to lesson_path(@lesson)
-          else
+        else
             render :edit
-          end
+        end
     end
 
     def destroy
-        @lesson.destroy
-        redirect_to lessons_path
+        if @lesson.present?
+            @lesson.destroy
+            redirect_to lessons_path
+        end
+
     end
 
     private
+
+    def find_lesson_id
+        @lesson = Lesson.find(params[:id])
+    end
 
     def lesson_params
         params.require(:lesson).permit(:subject, :description, :cost, :time_of_lesson, :tutor)

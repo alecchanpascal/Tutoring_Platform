@@ -6,9 +6,6 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create]
   root "welcome#new"
   get "/admin" => "admin#index"
-  # namespace :tutor_admin do
-  #   resources :dashboard, only: [:index, :edit, :destroy]
-  # end
 
   namespace :admin do
     resources :dashboard, only: [:edit, :destroy]
