@@ -1,7 +1,19 @@
-<%= form_with(model: @enrollment) do |f| %>  
-  <div>
+<%= form_with(model: @enrollment) do |f| %>
+  <div class="dropdown">
     <%= f.hidden_field :student_id, value: current_user.id.to_s %>
-    <%= f.select :lesson_id,  options_for_select(@lessons.collect{ |ls| [ls.subject, ls.id] })%>
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+    Choose your course
+    </button>
+    <%= f.select :lesson_id,  options_for_select(@lessons.collect{ |ls| [ls.subject, ls.id] }) %>
+
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+      <%= f.select :lesson_id,  options_for_select(@lessons.collect{ |ls| [ls.subject, ls.id] }) %>
+      <li><a class="dropdown-item" href=""></a></li>
+    </ul>
   </div>
-  <%= f.submit "Comments", class: "btn btn-outline-primary btn-md " %>
-<% end %>  
+
+
+  <%= f.submit "Enrollment", class: "btn btn-outline-primary btn-md " %>
+<% end %>
+
+

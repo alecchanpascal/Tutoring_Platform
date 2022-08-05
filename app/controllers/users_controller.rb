@@ -24,6 +24,24 @@ class UsersController < ApplicationController
 
 
 
+      def edit
+        # @lessons = Lesson.order(created_at: :desc)
+      end
+
+      def index
+
+        # @lessons = Lesson.order(created_at: :desc)
+
+      end
+
+
+
+
+
+
+
+
+
     private
 
     def load_users

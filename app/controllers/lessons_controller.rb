@@ -1,7 +1,7 @@
 class LessonsController < ApplicationController
     before_action :authenticate_user!
     before_action :is_student?, only: [:new, :create]
- 
+
     def new
         @lesson = Lesson.new
     end
@@ -26,7 +26,7 @@ class LessonsController < ApplicationController
             end
         else
             redirect_to root_path, notice: "tutors only"
-        end 
+        end
 
 
     end
@@ -59,14 +59,20 @@ class LessonsController < ApplicationController
             redirect_to lesson_path(@lesson)
         else
             render :edit
-        end    
+        end
+    end
 
+    def destroy
+        @lesson = Lesson.find_by_id(params[:id])
+        @lesson.destroy
+        redirect_to lessons_path
     end
 
     private
 
     def find_lesson_id
         @lesson = Lesson.find(params[:id])
+
     end
 
     def lesson_params

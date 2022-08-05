@@ -16,7 +16,7 @@
                 <li class="nav-item navbar-custom">
                      <a class="nav-link" href="<%= new_enrollment_path %>"> Register Lesson</a>
                 </li>
-             
+
 
                 <% if user_sign_in? %>
                     <% if User_isTutor? %>
@@ -37,7 +37,7 @@
                     </li>
 
                     <li class="nav-item navbar-custom">
-                        <a class="nav-link" href="<%= new_user_path %>"> Sign Up</a>
+                        <a class="nav-link" href="<%= new_enrollment_path %>"> Sign Up</a>
                     </li>
                 <% end %>
             </ul>
