@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Ability
     include CanCan::Ability
 
@@ -7,7 +9,7 @@ class Ability
         alias_action :create, :read, :update, :delete, to: :crud
         
         can :crud, Lesson do |lesson|
-            user == lesson.user
+            user == lesson.tutor
         end
         
         can :delete, Review do |review|

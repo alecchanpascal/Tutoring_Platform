@@ -17,6 +17,7 @@ class UsersController < ApplicationController
           redirect_to lessons_path
 
       else
+        flash[:Error] = @user.errors.full_messages.to_sentence
         render :new, status: 303
       end
 

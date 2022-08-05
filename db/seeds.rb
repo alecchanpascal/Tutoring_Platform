@@ -10,9 +10,6 @@ Lesson.destroy_all
 Review.destroy_all
 User.destroy_all
 
-
-
-
 PASSWORD = 123
 
 # tutor admin user as the first user in the DB

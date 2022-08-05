@@ -7,6 +7,7 @@ class ReviewsController < ApplicationController
         @review.tutor = @user
         @review.student = current_user
         if @review.save
+            Notification.create({body: "You have a new review!", user: @user})
             flash[:Notice] = "Review saved"
             redirect_to user_path(@user)
         else
@@ -35,6 +36,7 @@ class ReviewsController < ApplicationController
             end
         elsif current_user == @user
             if @review.update({published: true})
+                Notification.create({body: "Your review was published!", user: @review.student})
                 flash[:Notice] = "Review published"
                 redirect_to dashboard_admin_index_path
             else
@@ -50,10 +52,12 @@ class ReviewsController < ApplicationController
     def destroy
         if @review.destroy
             redirect_to dashboard_admin_index_path
-            if current_user.is_tutor == true
-                flash[:Notice] = "Review denied"
+            if current_user == @review.student
+                Notification.create({body: "A student has deleted their review of you.", user: @review.tutor})
+                flash[:Notice] = "Review deleted"
             else
-                flash[:Notice] = "Review cancelled"
+                Notification.create({body: "Your review was denied.", user: @review.student})
+                flash[:Notice] = "Review denied"
             end
         else
             flash[:Error] = @review.errors.full_messages.to_sentence

@@ -5,6 +5,7 @@ class Dashboard::AdminController < ApplicationController
   def index
     @lessons = Lesson.all.order(time_of_lesson: :asc)
     @reviews = Review.all.order(created_at: :asc)
+    @notes = Notification.all.order(created_at: :desc)
   end
 
   def edit

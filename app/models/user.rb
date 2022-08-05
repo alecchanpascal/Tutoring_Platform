@@ -20,6 +20,8 @@ class User < ApplicationRecord
     #Reviews for tutors
     has_many :reviews_for, :class_name => "Review", :foreign_key => "tutor_id"
 
+    has_many :notifications, dependent: :destroy
+
     #Enables User.tutors
     scope :tutors, -> {where(is_tutor:true)}
 

@@ -11,7 +11,7 @@ class EnrollmentsController < ApplicationController
     def create
         @user = User.find(params[:enrollment][:student_id])
         @lesson = Lesson.find(params[:enrollment][:lesson_id])
-        if @user.enrolled_courses.find(@lesson.id)
+        if @user.enrolled_courses.include?(@lesson)
             flash[:error] = "Already enrolled in this course"
             redirect_back(fallback_location: root_path)
         else

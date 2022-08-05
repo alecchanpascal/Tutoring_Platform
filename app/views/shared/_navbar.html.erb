@@ -29,7 +29,6 @@
                 <% end %>
 
                 <% if user_sign_in? %>
-                    <%# if User_isTutor? %>
                         <li class="nav-item navbar-custom">
                     <% if current_user.is_tutor == false %>
                         <a href="<%= dashboard_admin_index_path %>" class="nav-link" style="color: #81b3d2" > Hello Student: <%= current_user.username %></a>
