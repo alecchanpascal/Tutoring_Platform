@@ -44,6 +44,8 @@ end
     )
 end
 #create 2 lessons for tutor_id = 1 and tutor_id  = 2
+<<<<<<< HEAD
+=======
 # Lesson.create(
 #         subject: "rails1", 
 #         description: "wow" ,
@@ -59,6 +61,7 @@ end
 #         time_of_lesson: DateTime.new(2022, 8, 29, 22, 35, 0), 
 #         tutor_id: 2
 #       );   
+>>>>>>> origin/integration
 
 # Lesson.create(
 #         subject: "rails2", 

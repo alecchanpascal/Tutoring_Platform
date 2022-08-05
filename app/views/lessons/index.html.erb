@@ -1,9 +1,15 @@
+<div class="main-container">
+<div class="lessons-container">
 <% @lessons.each do |lesson| %>
-<hr>
-    <p><%= link_to  "Subject:  "+ lesson.subject, lesson_path(lesson) %> </p>
+<div class="idea border border-secondary rounded p-3" style="background-color: lavender">
+    <p class="card-title"><%= link_to  "Subject:  "+ lesson.subject, lesson_path(lesson) %> </p>
+    <div class="lesson-info">
     <p> Description: <%= lesson.description %> </p>
     <p> Cost: <%= lesson.cost %> </p>
     <p> Time: <%= lesson.time_of_lesson %> </p>
     <p> Tutor name: <%= lesson.tutor.username %> </p>
-<hr>
+    </div>
+</div>
 <% end %>
+</div>
+</div>

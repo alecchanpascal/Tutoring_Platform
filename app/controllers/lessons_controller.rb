@@ -1,6 +1,7 @@
 class LessonsController < ApplicationController
     before_action :authenticate_user!
     before_action :is_student?, only: [:new, :create]
+    before_action :authorize_user!, only:[:edit, :update]
  
     def new
         @lesson = Lesson.new
@@ -86,6 +87,9 @@ class LessonsController < ApplicationController
     
     private
 
+    def authorize_user!
+        redirect_to root_path, alert: "Not authorized" unless can?(:crud, @lesson)
+    end
     def find_lesson_id
         @lesson = Lesson.find(params[:id])
     end
