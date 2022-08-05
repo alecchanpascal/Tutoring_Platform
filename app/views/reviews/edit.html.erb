@@ -1,0 +1,11 @@
+<%= form_with(model:[@user, @review]) do |f| %>
+        <div>
+            <%= f.label :rating %>
+            <%= f.number_field :rating, in: 0..5 %>
+            <br>
+            <%= f.label :body %>
+            <%= f.text_area :body, :class => "form-control", placeholder: "What's did you think of this tutor?" %>
+        </div>
+        <br>
+        <%= f.submit :Submit, :class => "btn btn-outline-primary" %>
+<% end %>

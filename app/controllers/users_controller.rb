@@ -23,6 +23,28 @@ class UsersController < ApplicationController
     end
 
 
+    def edit
+      # @lessons = Lesson.order(created_at: :desc)
+    end
+
+    def index
+      @users = User.tutors
+    end
+
+    def show
+      @user = User.find(params[:id])
+      @lessons = @user.lessons.order(time_of_lesson: :asc)
+      @reviews = @user.reviews_for.order(created_at: :desc)
+      current_user.reviews_by.each do |review|
+        if review.tutor == @user
+          @review = review
+          break
+        end
+      end
+      if !@review
+        @review = Review.new
+      end
+    end
 
       def edit
         # @lessons = Lesson.order(created_at: :desc)

@@ -7,14 +7,15 @@ class SessionsController < ApplicationController
         @user = User.find_by_email params[:email]
         if @user && @user.authenticate(params[:password])
             session[:user_id] = @user.id
-            if User_isTutor?
-            #     redirect_to edit_user_path(current_user.id), {notice: "Tutor Panel Logged In"}
-            # else
-                redirect_to lessons_path, {notice: "Logged In"}
+            redirect_to lessons_path, {notice: "Logged In"}
+            # if User_isTutor?
+            # #     redirect_to edit_user_path(current_user.id), {notice: "Tutor Panel Logged In"}
+            # # else
+            #     redirect_to lessons_path, {notice: "Logged In"}
+            
+             else
+            render :new, {alert: "Wrong email or password!", status: 303}
             # end
-        else
-        render :new, {alert: "Wrong email or password!", status: 303}
-            end
         end
     end
 

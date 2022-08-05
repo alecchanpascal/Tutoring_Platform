@@ -1,32 +1,34 @@
-<%= form_with model: @lesson do |f|%>
-<div>
-    <%= f.label :subject, class: "form-label" %>
-    <%= f.text_field :subject, class: 'form-control'%>
-</div>
-<div>
-    <%= f.label :description, class: "form-label" %>
-    <%= f.text_area :description,  class: 'form-control'%>
-</div>
+<div class="m-3">
+  <%= form_with model: @lesson do |f|%>
+  <div>
+      <%= f.label :subject, class: "form-label" %>
+      <%= f.text_field :subject, class: 'form-control'%>
+  </div>
+  <div>
+      <%= f.label :description, class: "form-label" %>
+      <%= f.text_area :description,  class: 'form-control'%>
+  </div>
 
-<div>
-    <%= f.label :cost, class: "form-label" %>
-    <%= f.number_field :cost,  class: 'form-control'%>
-</div>
+  <div>
+      <%= f.label :cost, class: "form-label" %>
+      <%= f.number_field :cost,  class: 'form-control'%>
+  </div>
 
-<div>
-    <%= f.label :time_of_lesson, class: "form-label" %>
-    <%= f.date_select :time_of_lesson%>
-</div>
-<div>
-   <%= f.submit "Create Post", class: "btn btn-outline-primary btn-md"%>
-</div>
-<% end %>
+  <div class="mt-2">
+      <%= f.label :time_of_lesson, class: "form-label" %>
+      <%= f.date_select :time_of_lesson%>
+  </div>
+  <div>
+    <%= f.submit "Create Lesson", class: "btn btn-outline-primary btn-md mt-1"%>
+  </div>
+  <% end %>
 
 
-<% if @lesson.errors.any? %>
-  <ul>
-    <%  @lesson.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-  </ul>
-<% end %>
+  <% if @lesson.errors.any? %>
+    <ul>
+      <%  @lesson.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>

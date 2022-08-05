@@ -37,14 +37,21 @@ class LessonsController < ApplicationController
     def show
         p "Lesson show"
         @lesson = Lesson.find_by_id(params[:id])
-        @student_array = []
+        if params[:event_option].present?
+            p params[:event_option]
+        end
+        @accepted_students_array = []
+        @not_accepted_students_array = []
         @lesson.enrollments.each do |enrollment|
             student = User.find_by(id: enrollment.student_id)
-            if student.is_tutor != true
-                @student_array.push(student)
+            if student.is_tutor != true && student.is_registered && student.is_accepted 
+                p "-----accepted students-----", student
+                @accepted_students_array.push(student)
+            elsif student.is_tutor != true && student.is_registered == false && student.is_accepted == false
+                @not_accepted_students_array.push(student)
             end
-
         end
+        
 
     end
 
@@ -68,8 +75,26 @@ class LessonsController < ApplicationController
         redirect_to lessons_path
     end
 
+
+    def destroy
+        @lesson = Lesson.find_by_id(params[:id])
+        if @lesson.present?
+            array_of_enrollments_related_to_lesson = Enrollment.find_lesson_id(@lesson.id)
+            array_of_enrollments_related_to_lesson.each do |enrollment|
+                enrollment.destroy
+            end
+            @lesson.destroy
+            redirect_to lessons_path
+        else
+            render :show
+        end
+    end
+    
     private
 
+    def authorize_user!
+        redirect_to root_path, alert: "Not authorized" unless can?(:crud, @lesson)
+    end
     def find_lesson_id
         @lesson = Lesson.find(params[:id])
 

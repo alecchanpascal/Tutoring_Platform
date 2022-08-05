@@ -28,10 +28,10 @@
         <div class="field">
             <%= f.label :is_tutor, 'Pick One Please 👇', class:"form-check-label", style:"font-size:15px;"%>
             <div>
-            <%= check_box_tag(:is_tutor, "true", params[:is_tutor].eql?("true") ) %><strong> Tutor </strong>
+                <%= f.radio_button(:is_tutor, true)%><strong> Tutor </strong>
             </div>
             <div>
-            <%= check_box_tag(:is_tutor, "false", true)%><strong style="mx-2"> Student </strong>
+                <%= f.radio_button(:is_tutor, false, checked: true)%><strong style="mx-2"> Student </strong>
             </div>
         </div>
         <%= f.submit "Sign up", class: "btn btn-outline-primary my-2"  %>
