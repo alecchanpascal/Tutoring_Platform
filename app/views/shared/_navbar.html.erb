@@ -1,4 +1,3 @@
-
 <header class="navbar-custom" >
     <nav class="navbar navbar-expand-lg  bg-black" style="width:100%">
         <a class="navbar-brand" style="margin-left: 10px; color: #81b3d2" href="<%= root_path %>">
@@ -27,19 +26,15 @@
                 </li>
                 <% end %>
                 <% end %>
-
                 <% if user_sign_in? %>
-    
+                    <%# if User_isTutor? %>
                         <li class="nav-item navbar-custom">
-                    <% if current_user.is_tutor == true %>
-                        <a href="<%= lessons_path%>" style="color: white;"> Hello Tutor: <%= current_user.username %></a> 
-                        
+                    <% if tutor_check? != false %>
+                        <a href="<%= lessons_path%>" > Hello Student: <%= current_user.username %></a>
                     <% else %>
-                    <a href="<%= lessons_path%>" style="color: white;"> Hello Student: <%= current_user.username %></a>
-                    </li>
+                        <a href="<%= lessons_path%>" > Hello Tutor: <%= current_user.username %></a> 
                     <% end %>
 
-                
                     <li class="nav-item navbar-custom me-2">
                         <%= button_to "Log out", session_path, method: :delete, class: "btn btn-danger" %>
                     </li>
