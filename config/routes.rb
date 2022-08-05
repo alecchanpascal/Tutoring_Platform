@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create]
   root "welcome#new"
   resource :review, only: [:edit, :update,:destroy]
+  # delete '/dashboard/admin/:id' => "admin#destroy", as: :admin_destroy
 
   namespace :dashboard do
     resources :admin

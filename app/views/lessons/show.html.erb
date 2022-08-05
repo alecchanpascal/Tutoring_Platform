@@ -16,6 +16,8 @@
 </ul>
 <div class="btn-group">
 <%= link_to 'Edit', edit_lesson_path(@lesson), class: "btn btn-outline-primary btn-md " %>
-<%= button_to "Delete", lesson_path(@lesson), method: :delete, class: 'btn btn-outline-primary btn-md',form: { data: { turbo_confirm: "Are you sure?" } }  %>
+<%#  %>
+
+<%= button_to "Delete", dashboard_admin_path(@lesson), method: :delete, class: 'btn btn-outline-primary btn-md',form: { data: { turbo_confirm: "Are you sure?" } }  %>
 </div>
 
