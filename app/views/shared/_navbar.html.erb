@@ -1,7 +1,8 @@
 
 <header class="navbar-custom" >
     <nav class="navbar navbar-expand-lg  bg-black" style="width:100%">
-        <a class="navbar-brand" style="margin-left: 10px; color: #81b3d2" href="<%= root_path %>">TutorMe</a>
+        <a class="navbar-brand" style="margin-left: 10px; color: #81b3d2" href="<%= root_path %>">
+        <%= image_tag("logo.png", width:"130", class:"ms-2")%></a>
             <ul class="navbar-nav ms-auto" >
                 <%# <li class="nav-item navbar-custom">
                     <a class="nav-link"  href=#> Admin Panel  </a>
@@ -27,15 +28,13 @@
                 <% if user_sign_in? %>
                     <%# if User_isTutor? %>
                         <li class="nav-item navbar-custom">
-               
                     <% if tutor_check? != false %>
                         <a href="<%= lessons_path%>" > Hello Student: <%= current_user.username %></a>
                     <% else %>
                         <a href="<%= lessons_path%>" > Hello Tutor: <%= current_user.username %></a> 
                     <% end %>
-                    
 
-                    <li class="nav-item navbar-custom">
+                    <li class="nav-item navbar-custom me-2">
                         <%= button_to "Log out", session_path, method: :delete, class: "btn btn-danger" %>
                     </li>
                 <% else %>
