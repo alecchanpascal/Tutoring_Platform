@@ -1,8 +1,8 @@
 class LessonsController < ApplicationController
     before_action :authenticate_user!
     before_action :is_student?, only: [:new, :create]
-    before_action :authorize_user!, only:[:edit, :update]
- 
+    # before_action :authorize_user!, only:[:edit, :update]
+    
     def new
         @lesson = Lesson.new
     end

@@ -24,7 +24,7 @@ User.create(
 )
 
 #create ten students
-15.times do 
+10.times do 
     username = Faker::Name.first_name
     User.create(
       username: username,
@@ -53,13 +53,13 @@ end
     )
 end
 
-#create 2 lessons for tutor_id = 11 and tutor_id  = 12
+#create 2 lessons for tutor_id = 11 and tutor_id  = 12, (make tutor_id either 1, 12 or 13)
 Lesson.create(
         subject: "rails1", 
         description: "wow" ,
         cost: 100, 
         time_of_lesson: DateTime.new(2022, 8, 29, 22, 35, 0), 
-        tutor_id: 11
+        tutor_id: 1
         );
 
 
@@ -70,6 +70,22 @@ Lesson.create(
         time_of_lesson: DateTime.new(2022, 8, 29, 22, 35, 0), 
         tutor_id: 12
       );   
+
+      Lesson.create(
+        subject: "rails3", 
+        description: "wow" ,
+        cost: 100, 
+        time_of_lesson: DateTime.new(2022, 8, 30, 22, 35, 0), 
+        tutor_id: 12
+      );  
+
+      Lesson.create(
+        subject: "rails4", 
+        description: "wow" ,
+        cost: 100, 
+        time_of_lesson: DateTime.new(2022, 9, 30, 22, 35, 0), 
+        tutor_id: 13
+      );  
 
 #students from 1 to 5 are enrolled into lesson1 and left their review for tutor_id 11
 (1..5).each do |i|
