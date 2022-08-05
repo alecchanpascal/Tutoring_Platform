@@ -3,7 +3,7 @@
 <% @lessons.each do |lesson| %>
   <div>
     <h2><%= link_to lesson.subject, lesson_path(lesson) %></h2>
-    <h4> <%= lesson.created_at %> </h4>
+    <h4> Created <%= time_ago_in_words(lesson.created_at) %> ago </h4>
   </div>
 <% end %>
 

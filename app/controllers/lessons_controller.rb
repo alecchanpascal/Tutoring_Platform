@@ -1,11 +1,11 @@
 class LessonsController < ApplicationController
-    before_action :find_lesson_id
 
     def new
         @lesson = Lesson.new
     end
 
     def show
+        @lesson = Lesson.find(params[:id])
     end
 
     def create
