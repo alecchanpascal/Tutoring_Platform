@@ -25,7 +25,6 @@ class ApplicationController < ActionController::Base
         redirect_to new_session_path,  notice: "A student can not register a course" if current_user.is_tutor == false
     end
 
-
     def authenticate_user!
         redirect_to new_session_path,  notice: "Please sign up" unless user_sign_in?
     end
@@ -35,4 +34,7 @@ class ApplicationController < ActionController::Base
     end
     helper_method :User_isTutor?
 
+    def add_count
+        
+    end
 end

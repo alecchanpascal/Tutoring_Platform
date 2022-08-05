@@ -7,24 +7,32 @@
                 <%# <li class="nav-item navbar-custom">
                     <a class="nav-link"  href=#> Admin Panel  </a>
                 </li> %>
-                <li class="nav-item navbar-custom" >
-                     <a class="nav-link" style="color: #81b3d2" href="<%= lessons_path %>"> Lessons</a>
-                </li>
-
                 <li class="nav-item navbar-custom">
-                     <a class="nav-link" style="color: #81b3d2" href="<%= new_lesson_path %>"> Create Lessons </a>
-                </li>
+                <a class="nav-link" style="color: #81b3d2" href="<%= lessons_path %>"> Lessons</a>
+
+                <li>
+                <% if current_user.present? %>
+                <% if current_user.is_tutor %>
+               
+                <li class="nav-item navbar-custom">
+
+                <a class="nav-link" style="color: #81b3d2" href="<%= new_lesson_path %>"> Create Lessons </a>
+                 </li>
+                 <% else %>
                 <li class="nav-item navbar-custom">
                      <a class="nav-link" style="color: #81b3d2"  href="<%= new_enrollment_path %>"> Register Lesson</a>
                 </li>
-             
+                <% end %>
+                <% end %>
 
                 <% if user_sign_in? %>
                     <%# if User_isTutor? %>
-                        <li class="nav-item navbar-custom mt-2 me-2">
-              
-
-                        <a href=<% dashboard_admin_index_path %> ><%= tutor_check? ? "Hello Tutor:" : "Hello Student:"  %> <%= current_user.username %>  </a>
+                        <li class="nav-item navbar-custom">
+                    <% if tutor_check? != false %>
+                        <a href="<%= lessons_path%>" > Hello Student: <%= current_user.username %></a>
+                    <% else %>
+                        <a href="<%= lessons_path%>" > Hello Tutor: <%= current_user.username %></a> 
+                    <% end %>
 
                     <li class="nav-item navbar-custom me-2">
                         <%= button_to "Log out", session_path, method: :delete, class: "btn btn-danger" %>

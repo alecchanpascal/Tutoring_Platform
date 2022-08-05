@@ -17,6 +17,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_04_024919) do
   create_table "enrollments", force: :cascade do |t|
     t.bigint "student_id"
     t.bigint "lesson_id"
+    t.boolean "is_accepted", default: false
+    t.boolean "is_registered", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["lesson_id"], name: "index_enrollments_on_lesson_id"
@@ -50,6 +52,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_04_024919) do
     t.string "email"
     t.string "password_digest"
     t.boolean "is_tutor"
+    t.boolean "is_accepted", default: false
+    t.boolean "is_registered", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
