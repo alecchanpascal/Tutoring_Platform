@@ -29,8 +29,8 @@ class LessonsController < ApplicationController
     def show
         p "Lesson show"
         @lesson = Lesson.find_by_id(params[:id])
-        if params[:event_option].present?
-            p params[:event_option]
+        if params[:acceptable].present? || params[:registered].present?
+            p  "------------" ,params
         end
         @accepted_students_array = []
         @not_accepted_students_array = []
@@ -55,7 +55,13 @@ class LessonsController < ApplicationController
             redirect_to lesson_path(@lesson)
         else
             render :edit
-        end    
+        end
+    end
+
+    def destroy
+        @lesson = Lesson.find_by_id(params[:id])
+        @lesson.destroy
+        redirect_to lessons_path
     end
 
 
@@ -77,6 +83,7 @@ class LessonsController < ApplicationController
 
     def find_lesson_id
         @lesson = Lesson.find(params[:id])
+
     end
 
     def lesson_params

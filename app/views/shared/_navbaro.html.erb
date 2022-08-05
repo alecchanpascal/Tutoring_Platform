@@ -5,7 +5,7 @@
             <ul class="navbar-nav ms-auto" >
 
                 <li class="nav-item navbar-custom">
-                    <a class="nav-link" style="color: #81b3d2" href="<%= users_path %>"> Tutors  </a>
+                    <a class="nav-link"  href="<%= users_path %>"> Tutors  </a>
                 </li>
 
                 <li class="nav-item navbar-custom" >
@@ -14,31 +14,30 @@
 
                 <li>
                 <% if current_user.present? %>
-                    <% if current_user.is_tutor %>
-                
-                    <li class="nav-item navbar-custom">
-                    <a class="nav-link" style="color: #81b3d2" href="<%= new_lesson_path %>"> Create Lessons </a>
-                    </li>
-                    <% else %>
-                    <li class="nav-item navbar-custom">
-                        <a class="nav-link" style="color: #81b3d2"  href="<%= new_enrollment_path %>"> Register Lesson</a>
-                    </li>
-                    <% end %>
-                <% end %>
+                <% if current_user.is_tutor %>
+               
+                <li class="nav-item navbar-custom">
 
+                <a class="nav-link" style="color: #81b3d2" href="<%= new_lesson_path %>"> Create Lessons </a>
+                 </li>
+                 <% else %>
+                <li class="nav-item navbar-custom">
+                     <a class="nav-link" style="color: #81b3d2"  href="<%= new_enrollment_path %>"> Register Lesson</a>
+                </li>
+                <% end %>
+                <% end %>
                 <% if user_sign_in? %>
+                    <%# if User_isTutor? %>
                         <li class="nav-item navbar-custom">
-                    <% if current_user.is_tutor == false %>
-                        <a href="<%= dashboard_admin_index_path %>" class="nav-link" style="color: #81b3d2" > Hello Student: <%= current_user.username %></a>
+                    <% if tutor_check? != false %>
+                        <a href="<%= lessons_path%>" > Hello Student: <%= current_user.username %></a>
                     <% else %>
-                        <a href="<%= dashboard_admin_index_path %>" class="nav-link" style="color: #81b3d2" > Hello Tutor: <%= current_user.username %></a> 
+                        <a href="<%= lessons_path%>" > Hello Tutor: <%= current_user.username %></a> 
                     <% end %>
-                
 
                     <li class="nav-item navbar-custom me-2">
                         <%= button_to "Log out", session_path, method: :delete, class: "btn btn-danger" %>
                     </li>
-              
                 <% else %>
 
                     <li class="nav-item navbar-custom">
@@ -46,9 +45,7 @@
                     </li>
 
                     <li class="nav-item navbar-custom">
-
                         <a class="nav-link" style="color: #81b3d2" href="<%= new_user_path %>"> Sign Up</a>
-
                     </li>
                 <% end %>
             </ul>
