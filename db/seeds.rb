@@ -52,6 +52,7 @@ end
       is_tutor: true
     )
 end
+
 #create 2 lessons for tutor_id = 11 and tutor_id  = 12
 Lesson.create(
         subject: "rails1", 
@@ -68,7 +69,6 @@ Lesson.create(
         time_of_lesson: DateTime.new(2022, 8, 29, 22, 35, 0), 
         tutor_id: 12
       );   
-
 
 #students from 1 to 5 are enrolled into lesson1 and left their review for tutor_id 11
 (1..5).each do |i|
