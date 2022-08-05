@@ -2,7 +2,7 @@
 <h4>Subject: <%= @lesson.subject %> </h4>
 <h5> Subject Description: <%= @lesson.description %> </h5>
 <p> Cost: <%= @lesson.cost %> </p>
-<p> Time: <%= @lesson.time_of_lesson %> </p>
+<p> Time Taking Place: <%= time_ago_in_words(@lesson.time_of_lesson) %> </p>
 <a href="<%= user_path(@lesson.tutor.id)%>"> Tutor name: <%= @lesson.tutor.username %> </a>
 <ul>
 <% @student_array.each do | student | %>
@@ -13,8 +13,29 @@
 <% end %>
 </ul>
 
-<div class="btn-group">
-    <%= link_to 'Edit', edit_lesson_path(@lesson), class: "btn btn-outline-primary btn-md " %>
-    <%= button_to "Delete", lesson_path(@lesson), method: :delete, class: 'btn btn-outline-primary btn-md',form: { data: { turbo_confirm: "Are you sure?" } }  %>
-</div>
+<% if current_user.is_tutor != true %>
 
+<% else %>
+<div class="btn-group">
+<%= link_to 'Edit', edit_lesson_path(@lesson), class: "btn btn-outline-primary btn-md " %>
+<%= button_to "Delete", dashboard_admin_path(@lesson), method: :delete, class: 'btn btn-outline-primary btn-md',form: { data: { turbo_confirm: "Are you sure?" } }  %>
+</div>
+<% end %>
+
+    <h4>Not Accepted Students List</h4>
+<% @not_accepted_students_array.each do | student | %>
+    
+    <li> 
+       Student Name: <%= student.username %> 
+<%# book_now_path(:event => @event.id, :event_option_id => e.id) %>
+
+
+        <%= link_to 'Accept', lesson_path(@lesson, :event_option => true), class: "btn btn-outline-primary btn-md " %>
+        <%= link_to 'Deny', lesson_path(@lesson), class: "btn btn-outline-primary btn-md " %>
+       <%#= button_to "Accept", lesson_path(@lesson), class: 'btn btn-outline-primary btn-md',, method: :get, params: { start_point: 3.month.ago } %form: { data: { turbo_confirm: "Are you sure?" } }  %>
+       <%#= button_to "Deny", lesson_path(@lesson), class: 'btn btn-outline-primary btn-md',form: { data: { turbo_confirm: "Are you sure?" } } 
+       <%= button_to "Deny", lesson_path(@lesson), method: :get, params: { acceptable: false,  registered, false} %>   
+       #some_path, method: :get, params: { start_point: 3.month.ago } %>   
+    </li>
+<% end %>
+    

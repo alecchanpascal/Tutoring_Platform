@@ -24,23 +24,20 @@
                 <li class="nav-item navbar-custom">
                      <a class="nav-link" style="color: #81b3d2"  href="<%= new_enrollment_path %>"> Register Lesson</a>
                 </li>
-
                 <% end %>
                 <% end %>
-
                 <% if user_sign_in? %>
-                    <% if current_user.is_tutor == true %>
+                    <%# if User_isTutor? %>
                         <li class="nav-item navbar-custom">
-                        <a href="<%= lessons_path%>" > Hello Tutor: <%= current_user.username %></a> 
-                        <% else %> 
+                    <% if tutor_check? != false %>
                         <a href="<%= lessons_path%>" > Hello Student: <%= current_user.username %></a>
+                    <% else %>
+                        <a href="<%= lessons_path%>" > Hello Tutor: <%= current_user.username %></a> 
                     <% end %>
-                
 
                     <li class="nav-item navbar-custom me-2">
                         <%= button_to "Log out", session_path, method: :delete, class: "btn btn-danger" %>
                     </li>
-              
                 <% else %>
 
                     <li class="nav-item navbar-custom">
@@ -48,9 +45,7 @@
                     </li>
 
                     <li class="nav-item navbar-custom">
-
                         <a class="nav-link" style="color: #81b3d2" href="<%= new_user_path %>"> Sign Up</a>
-
                     </li>
                 <% end %>
             </ul>

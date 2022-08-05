@@ -2,6 +2,8 @@ class LessonsController < ApplicationController
     before_action :authenticate_user!
     before_action :is_student?, only: [:new, :create]
 
+    # before_action :authorize_user!, only:[:edit, :update]
+
     def new
         @lesson = Lesson.new
     end
@@ -37,8 +39,8 @@ class LessonsController < ApplicationController
     def show
         p "Lesson show"
         @lesson = Lesson.find_by_id(params[:id])
-        if params[:event_option].present?
-            p params[:event_option]
+        if params[:acceptable].present? || params[:registered].present?
+            p  "------------" ,params
         end
         @accepted_students_array = []
         @not_accepted_students_array = []
@@ -50,7 +52,7 @@ class LessonsController < ApplicationController
             elsif student.is_tutor != true && student.is_registered == false && student.is_accepted == false
                 @not_accepted_students_array.push(student)
             end
-        end
+    end
         
 
     end
