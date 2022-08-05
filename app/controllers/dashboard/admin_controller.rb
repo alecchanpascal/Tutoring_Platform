@@ -1,5 +1,6 @@
-class AdminController < ApplicationController
-  before_action :find_tutor_id, only: [:index]
+# module Dashboard
+class Dashboard::AdminController < ApplicationController
+  before_action :find_tutor_id, only: [:index, :edit, :update]
   def index
 
     @lessons = Lesson.all.order(created_at: :desc)
@@ -10,7 +11,7 @@ class AdminController < ApplicationController
   end
 
   def edit
-
+    render :edit
   end
 
   def update
@@ -18,7 +19,6 @@ class AdminController < ApplicationController
   end
 
   def destroy
-    p "INSIDE ADMIN DESTROY"
     @lesson = Lesson.find params[:id]
     if @lesson.present?
       @lesson.destroy
@@ -39,3 +39,4 @@ class AdminController < ApplicationController
     @lesson = Lesson.find_by_id(params[:tutor_id])
   end
 end
+# end
