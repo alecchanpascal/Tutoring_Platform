@@ -5,7 +5,7 @@
 <small>Total Number of Students <%= @accepted_students_array.count%> <small>
 <p> Cost: <%= @lesson.cost %> </p>
 <p> Time: <%= @lesson.time_of_lesson %> </p>
-<p> Tutor name: <%= @lesson.tutor.username %> </p>
+<a href="<%= user_path(@lesson.tutor.id)%>"> Tutor name: <%= @lesson.tutor.username %> </a>
 <ul>
 <h4> Accepted Students List </h4>
 <% @accepted_students_array.each do | student | %>

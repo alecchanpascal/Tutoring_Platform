@@ -3,9 +3,10 @@ Rails.application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
   resources :lessons, only: [:new, :create, :destroy, :edit, :update, :index, :show]
   resources :enrollments, only: [:new, :create, :destroy]
-  resources :users, only: [:new, :create]
+  resources :users do 
+    resources :reviews, only: [:create, :destroy, :edit, :update]
+  end
   root "welcome#new"
-  resource :review, only: [:edit, :update,:destroy]
   # delete '/dashboard/admin/:id' => "admin#destroy", as: :admin_destroy
 
   namespace :dashboard do

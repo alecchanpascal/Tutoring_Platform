@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
     end
 
     def authenticate_user!
-        redirect_to new_session_path,  notice: "Please sign up" unless user_sign_in?
+        redirect_to new_session_path,  notice: "Please sign in" unless user_sign_in?
     end
     
     def User_isTutor?

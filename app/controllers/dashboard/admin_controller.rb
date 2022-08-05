@@ -1,13 +1,10 @@
 # module Dashboard
 class Dashboard::AdminController < ApplicationController
-  before_action :find_tutor_id, only: [:index, :edit, :update]
+  before_action :find_lessons, only: [:index, :edit, :update]
+  
   def index
-
-    @lessons = Lesson.all.order(created_at: :desc)
-    # @lesson = Lesson.find_by_id(params[:tutor_id])
-    
-    # @lesson.tutor_id(current_user.id)     
-#     @students = Enrollment.student_id
+    @lessons = Lesson.all.order(time_of_lesson: :asc)
+    @reviews = Review.all.order(created_at: :asc)
   end
 
   def edit
@@ -41,7 +38,7 @@ class Dashboard::AdminController < ApplicationController
 #   end
   private
 
-  def find_tutor_id
+  def find_lessons
     @lesson = Lesson.find_by_id(params[:tutor_id])
   end
 end
