@@ -30,17 +30,19 @@
 <% end %>
 <br>
 
-<% if @review.valid? == false && current_user.is_tutor == false && current_user.enrolled_courses.find_by(tutor_id: @user.id).present? == true %>
-    <h3>Write a Review</h3>
-    <%= form_with(model:[@user, @review]) do |f| %>
-        <div>
-            <%= f.label :rating %>
-            <%= f.number_field :rating, in: 0..5 %>
+<% if current_user.present? %>
+    <% if @review.valid? == false && current_user.is_tutor == false && current_user.enrolled_courses.find_by(tutor_id: @user.id).present? == true %>
+        <h3>Write a Review</h3>
+        <%= form_with(model:[@user, @review]) do |f| %>
+            <div class="form-group">
+                <%= f.label :rating %>
+                <%= f.number_field :rating, in: 0..5 %>
+                <br>
+                <%= f.label :body %>
+                <%= f.text_area :body, :class => "form-control", placeholder: "What's did you think of this tutor?" %>
+            </div>
             <br>
-            <%= f.label :body %>
-            <%= f.text_area :body, :class => "form-control", placeholder: "What's did you think of this tutor?" %>
-        </div>
-        <br>
-        <%= f.submit :Submit, :class => "btn btn-outline-primary" %>
+            <%= f.submit :Submit, :class => "btn btn-outline-primary" %>
+        <% end %>
     <% end %>
 <% end %>

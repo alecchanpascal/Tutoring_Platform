@@ -27,17 +27,12 @@ class LessonsController < ApplicationController
     end
 
     def show
-        p "Lesson show"
         @lesson = Lesson.find_by_id(params[:id])
-        if params[:acceptable].present? || params[:registered].present?
-            p  "------------" ,params
-        end
         @accepted_students_array = []
         @not_accepted_students_array = []
         @lesson.enrollments.each do |enrollment|
             student = User.find_by(id: enrollment.student_id)
             if student.is_tutor != true && enrollment.is_accepted 
-                p "-----accepted students-----", student
                 @accepted_students_array.push(student)
             elsif student.is_tutor != true && enrollment.is_accepted == false
                 @not_accepted_students_array.push(student)
