@@ -15,7 +15,7 @@
                 <% if user_sign_in? %>
                     <% if User_isTutor? %>
                         <li class="nav-item navbar-custom">
-                            <a  href="<%= admins_path %> <%#= tutor_admin_dashboard_index_path(current_user.id) %>">Hello Tutor <%= current_user.username %>  </a>
+                            <a  href="<%= dashboard_admin_index_path %> <%#= tutor_admin_dashboard_index_path(current_user.id) %>">Hello Tutor <%= current_user.username %>  </a>
                         </li>
                     <% end %>
 
