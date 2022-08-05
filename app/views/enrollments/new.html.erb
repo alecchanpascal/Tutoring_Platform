@@ -1,6 +1,6 @@
 <%= form_with(model: @enrollment) do |f| %>
   <div class="dropdown">
-    <%= f.hidden_field :student_id, value: current_user.id.to_s %>
+    <%= f.hidden_field :student_id, value: current_user.id %>
     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
     Choose your course
     </button>

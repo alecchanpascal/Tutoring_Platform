@@ -14,7 +14,8 @@ class SessionsController < ApplicationController
             #     redirect_to lessons_path, {notice: "Logged In"}
             
              else
-            render :new, {alert: "Wrong email or password!", status: 303}
+                flash[:alert] = "Wrong email or password!"
+            render :new, status: 303
             # end
         end
     end

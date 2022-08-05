@@ -1,28 +1,53 @@
-<h1>Tutor Admin Panel</h1>
+<% if current_user.is_tutor == true%>
+  <h1>Tutor Admin Panel</h1>
 
-<% @lessons.each do |lesson| %>
-  <% if lesson.tutor == current_user %>
-  <div>
-    <h2><%= link_to lesson.subject, lesson_path(lesson) %></h2>
-    <h4> Created <%= time_ago_in_words(lesson.created_at) %> ago </h4>
-  </div>
-  <% end %>
-<% end %>
-
-<% @reviews.each do |review| %>
-  <% if review.tutor == current_user %>
+  <% @lessons.each do |lesson| %>
+    <% if lesson.tutor == current_user %>
     <div>
-      <h2><%= review.rating %></h2>
-      <h4><%= review.body %></h4>
-      <% if review.published == false %>
-        <%= button_to :Publish, user_review_path(current_user, review), method: :patch, class: "btn btn-primary" %>
-      <% end %>
+      <h2><%= link_to lesson.subject, lesson_path(lesson) %></h2>
+      <h4> Created <%= time_ago_in_words(lesson.created_at) %> ago </h4>
     </div>
+    <% end %>
   <% end %>
+
+  <% @reviews.each do |review| %>
+    <% if review.tutor == current_user %>
+      <div>
+        <h2><%= review.rating %></h2>
+        <h4><%= review.body %></h4>
+        <% if review.published == false %>
+          <%= button_to :Publish, user_review_path(current_user, review), method: :patch, class: "btn btn-outline-primary" %>
+          <%= button_to :Deny, user_review_path(current_user, review), method: :delete, class: "btn btn-outline-primary"%>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
+<% else %>
+  <h1>Student Admin Panel</h1>
+
+  <% @lessons.each do |lesson| %>
+    <% if lesson.enrolled_students.include?(current_user) %>
+      <div>
+        <h2><%= link_to lesson.subject, lesson_path(lesson) %></h2>
+        <h4> Created <%= time_ago_in_words(lesson.created_at) %> ago </h4>
+      </div>
+    <% end %>
+  <% end %>
+
+  <% @reviews.each do |review| %>
+    <% if review.student == current_user %>
+    <div>
+    <h2><%= link_to review.tutor.username, edit_user_review_path(review.tutor, review) %></h2>
+    <h4><%= review.body %></h4>
+    <% if review.published == true %>
+    <h4>Status: Published</h4>
+    <% else %>
+    <h4>Status: Unpublished</h4>
+    <%= button_to :Cancel, user_review_path(review.tutor, review), method: :delete, class: "btn btn-outline-primary"%>
+    <h4> Created <%= time_ago_in_words(review.created_at) %></h4>
+    <% end %>
+    </div>
+    <% end %>
+    <% end %>
 <% end %>
-
-
-<%# if can? :crud, @lesson %>
-  <%#= link_to 'Edit', edit_lesson_path(@lesson) %>
-  <%#= button_to 'Delete', lesson_path(@lesson), method: :delete, form: { data: { turbo_confirm: "Are you sure?" } }  %>
-<%# end %>
