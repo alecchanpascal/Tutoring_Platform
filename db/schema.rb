@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_05_172945) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_05_204145) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -41,6 +41,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_05_172945) do
     t.index ["tutor_id"], name: "index_lessons_on_tutor_id"
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.string "body"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
   create_table "reviews", force: :cascade do |t|
     t.integer "rating"
     t.text "body"
@@ -65,6 +73,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_05_172945) do
   add_foreign_key "enrollments", "lessons"
   add_foreign_key "enrollments", "users", column: "student_id"
   add_foreign_key "lessons", "users", column: "tutor_id"
+  add_foreign_key "notifications", "users"
   add_foreign_key "reviews", "users", column: "student_id"
   add_foreign_key "reviews", "users", column: "tutor_id"
 end

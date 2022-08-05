@@ -5,10 +5,16 @@
 <p> Time Taking Place: <%= time_ago_in_words(@lesson.time_of_lesson) %> </p>
 <a href="<%= user_path(@lesson.tutor.id)%>"> Tutor name: <%= @lesson.tutor.username %> </a>
 <ul>
-<% @student_array.each do | student | %>
- <li>
-    Student Name: <%= student.username %>
+<h4> Accepted Students List </h4>
+<% @accepted_students_array.each do | student | %>
+ <li> 
+    Student Name: <%= student.username %> 
     Email: <%= student.email %>
+    <% if student == current_user %>
+    <%= button_to :"Drop Out", enrollment_path(student.enrollments.find_by(lesson: @lesson)), method: :delete, class: "btn btn-outline-primary"%>
+    <% elsif current_user == @lesson.tutor %>
+    <%= button_to :"Kick Out", enrollment_path(student.enrollments.find_by(lesson: @lesson)), method: :delete, class: "btn btn-outline-primary"%>
+    <% end %>
 </li>
 <% end %>
 </ul>
