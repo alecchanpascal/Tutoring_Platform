@@ -15,12 +15,13 @@ class UsersController < ApplicationController
           session[:user_id] = @user.id
           flash.notice = "Signed up!"
           redirect_to lessons_path
-        
+
       else
         render :new, status: 303
       end
 
     end
+
 
 
     private

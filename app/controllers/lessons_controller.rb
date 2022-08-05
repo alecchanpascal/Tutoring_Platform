@@ -6,7 +6,12 @@ class LessonsController < ApplicationController
         @lesson = Lesson.new
     end
 
+    def show
+        @lesson = Lesson.find(params[:id])
+    end
+
     def create
+
         @lesson = Lesson.new params.require(:lesson).permit(:subject, :description, :cost, :time_of_lesson)
         p "create lesson"
         if current_user.is_tutor
@@ -22,6 +27,7 @@ class LessonsController < ApplicationController
         else
             redirect_to root_path, notice: "tutors only"
         end 
+
 
     end
 
@@ -43,6 +49,7 @@ class LessonsController < ApplicationController
     end
 
     def edit
+
         @lesson = Lesson.find_by_id(params[:id])
     end
 
@@ -53,9 +60,14 @@ class LessonsController < ApplicationController
         else
             render :edit
         end    
+
     end
 
     private
+
+    def find_lesson_id
+        @lesson = Lesson.find(params[:id])
+    end
 
     def lesson_params
         params.require(:lesson).permit(:subject, :description, :cost, :time_of_lesson, :tutor)

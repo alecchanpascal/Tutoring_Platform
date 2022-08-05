@@ -15,6 +15,14 @@ User.destroy_all
 
 PASSWORD = 123
 
+# tutor admin user as the first user in the DB
+User.create(
+  username: "admin",
+  email: "admin@user.com",
+  password: "#{PASSWORD}",
+  is_tutor: true
+)
+
 #create ten students
 10.times do 
     username = Faker::Name.first_name
@@ -36,6 +44,7 @@ end
     )
 end
 #create 2 lessons for tutor_id = 1 and tutor_id  = 2
+<<<<<<< HEAD
 Lesson.create(
         subject: "rails1", 
         description: "wow" ,
@@ -51,6 +60,24 @@ Lesson.create(
         time_of_lesson: DateTime.new(2022, 8, 29, 22, 35, 0), 
         tutor_id: 2
       );   
+=======
+
+# Lesson.create(
+#         subject: "rails2", 
+#         description: "wow" ,
+#         cost: 100, 
+#         time_of_lesson: DateTime.new(2022, 8, 29, 22, 35, 0), 
+#         tutor_id: 2); 
+         
+(10..20).each do |i|
+  Lesson.create(
+    subject: Faker::Lorem.word, 
+    description: Faker::Lorem.paragraph ,
+    cost: 100, 
+    time_of_lesson: DateTime.new(2022, 8, 29, 22, 35, 0), 
+    tutor_id: 1);
+end
+>>>>>>> 6c1f8dff70a52840adef05bb19788a27a5f08e97
 
 #students from 1 to 5 are enrolled into lesson1 and left their review for lecture1
 (1..5).each do |i|

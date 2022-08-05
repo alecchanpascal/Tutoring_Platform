@@ -9,6 +9,7 @@
                 <li class="nav-item navbar-custom">
                      <a class="nav-link" href="<%= lessons_path %>"> Lessons</a>
                 </li>
+
                 <li class="nav-item navbar-custom">
                      <a class="nav-link" href="<%= new_lesson_path %>"> Create Lessons </a>
                 </li>
@@ -16,12 +17,15 @@
                      <a class="nav-link" href="<%= new_enrollment_path %>"> Register Lesson</a>
                 </li>
              
+
                 <% if user_sign_in? %>
-                    <%# if User_isTutor? %>
+                    <% if User_isTutor? %>
                         <li class="nav-item navbar-custom">
-                            <a  href="#">Hello Tutor <%#current_user.username %>  </a>
+
+                            <a  href="<%= dashboard_admin_index_path %> <%#= tutor_admin_dashboard_index_path(current_user.id) %>">Hello Tutor <%= current_user.username %>  </a>
+
                         </li>
-                    <%# end %>
+                    <% end %>
 
                     <li class="nav-item navbar-custom">
                         <%= button_to "Log out", session_path, method: :delete, class: "btn btn-danger" %>

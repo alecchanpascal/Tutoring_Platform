@@ -1,8 +1,11 @@
+
 <h4>Subject: <%= @lesson.subject %> </h4>
 <h5> Subject Description: <%= @lesson.description %> </h5>
-
+<h4> 
 <small>Total Number of Students <%= @student_array.count%> <small>
-
+<p> Cost: <%= @lesson.cost %> </p>
+<p> Time: <%= @lesson.time_of_lesson %> </p>
+<p> Tutor name: <%= @lesson.tutor.username %> </p>
 <ul>
 <% @student_array.each do | student | %>
  <li> 
@@ -16,5 +19,3 @@
 <%= button_to "Delete", lesson_path(@lesson), method: :delete, class: 'btn btn-outline-primary btn-md',form: { data: { turbo_confirm: "Are you sure?" } }  %>
 </div>
 
-
-<%= @review %>
