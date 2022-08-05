@@ -15,7 +15,13 @@ class Dashboard::AdminController < ApplicationController
   end
 
   def update
-
+      p params
+      if @lesson.update params.require(:lesson).permit(:subject, :description, :cost, :time_of_lesson)
+          #redirect_to ?????????????
+          p worked!
+      else
+          render :edit
+      end
   end
 
   def destroy

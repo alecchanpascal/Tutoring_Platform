@@ -1,2 +1,15 @@
 EDIT PAGE
 
+<%= form_for @lesson do |f| %>
+    <%= f.label : %>
+    <%= f.text_field %>
+    <%= f.label : %>
+    <%= f.label : %>
+    <%= f.label : %>
+<% f.submit %>
+
+
+      t.string :subject
+      t.text :description
+      t.integer :cost
+      t.datetime :time_of_lesson
