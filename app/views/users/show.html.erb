@@ -1,0 +1,48 @@
+<h1><%= @user.username %></h1>
+<% @lessons.each do |lesson| %>
+<div class="card">
+    <div class="card-body">
+        <h4><%= link_to lesson.subject, lesson_path(lesson), class: "card-title" %></h4>
+    </div>
+</div>
+<br>
+<% end %>
+<% @reviews.each do |review| %>
+    <% if review.published %>
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-title">
+                    <% (1..review.rating).each do %>
+                        <%= "★" %>
+                    <% end %>
+                    <% (review.rating..4).each do %>
+                        <%= "☆" %>
+                    <% end %>
+                </h6>
+                <h6 class="card-text"><%= review.body %></h6>
+                <h6 class="card-text"><%= "Reviewed by: #{review.student.username} | #{(time_ago_in_words(review.created_at))}" %></h6>
+                <% if review.student == current_user %>
+                    <%= button_to :Delete, user_review_path(@user, review), method: :delete, class: "btn btn-primary"%>
+                <% end %>
+            </div>
+        </div>
+    <% end %>
+<% end %>
+<br>
+
+<% if current_user.present? %>
+    <% if @review.valid? == false && current_user.is_tutor == false && current_user.enrolled_courses.find_by(tutor_id: @user.id).present? == true %>
+        <h3>Write a Review</h3>
+        <%= form_with(model:[@user, @review]) do |f| %>
+            <div class="form-group">
+                <%= f.label :rating %>
+                <%= f.number_field :rating, in: 0..5 %>
+                <br>
+                <%= f.label :body %>
+                <%= f.text_area :body, :class => "form-control", placeholder: "What's did you think of this tutor?" %>
+            </div>
+            <br>
+            <%= f.submit :Submit, :class => "btn btn-outline-primary" %>
+        <% end %>
+    <% end %>
+<% end %>

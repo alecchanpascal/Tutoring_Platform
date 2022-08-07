@@ -1,0 +1,100 @@
+<% if current_user.is_tutor == true%>
+  <h1>Tutor Admin Panel</h1>
+  <div class="card">
+  <% @notes.each do |note| %>
+    <% if note.user == current_user %>
+    <div class="card-body">
+      <h2 class="card-title"><%= note.body %></h2>
+      <%= button_to :Acknowledged, notification_path(note), method: :delete, class: "btn btn-outline-danger"%>
+    </div>
+    <% end %>
+  <% end %>
+  </div>
+  <br>
+
+<div class="card">
+  <% @lessons.each do |lesson| %>
+    <% if lesson.tutor == current_user %>
+    <div class="card-body">
+      <h2 class="card-title"><%= link_to lesson.subject, lesson_path(lesson) %></h2>
+      <h4 class="card-text"> Created <%= time_ago_in_words(lesson.created_at) %> ago </h4>
+    </div>
+    <% end %>
+  <% end %>
+  </div>
+  <br>
+
+<div class="card">
+  <% @reviews.each do |review| %>
+    <% if review.tutor == current_user %>
+      <div card="card-body">
+        <h2 class="card-title">
+          <% (1..review.rating).each do %>
+              <%= "★" %>
+          <% end %>
+          <% (review.rating..4).each do %>
+              <%= "☆" %>
+          <% end %>
+        </h2>
+        <h4 class="card-text"><%= review.body %></h4>
+        <% if review.published == false %>
+          <%= button_to :Publish, user_review_path(current_user, review), method: :patch, class: "btn btn-outline-primary" %>
+          <%= button_to :Deny, user_review_path(current_user, review), method: :delete, class: "btn btn-outline-primary"%>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+  </div>
+
+<% else %>
+  <h1>Student Admin Panel</h1>
+
+<div class="card">
+  <% @notes.each do |note| %>
+    <% if note.user == current_user %>
+    <div class="card-body">
+      <h2 class="card-title"><%= note.body %></h2>
+      <%= button_to :Acknowledged, notification_path(note), method: :delete, class: "btn btn-outline-danger"%>
+    </div>
+    <% end %>
+  <% end %>
+  </div>
+
+<div class="card">
+  <% @lessons.each do |lesson| %>
+    <% if lesson.enrolled_students.include?(current_user) %>
+      <div class="card-body">
+        <h2 class="card-title"><%= link_to lesson.subject, lesson_path(lesson) %></h2>
+        <h4 class="card-text"> Created <%= time_ago_in_words(lesson.created_at) %> ago </h4>
+      </div>
+    <% end %>
+  <% end %>
+  </div>
+
+  <div class="card">
+  <% @reviews.each do |review| %>
+    <% if review.student == current_user %>
+    <div class="card-body">
+    <h2><%= link_to review.tutor.username, user_path(review.tutor) %></h2>
+    <h2 class="card-title">
+      <% (1..review.rating).each do %>
+          <%= "★" %>
+      <% end %>
+      <% (review.rating..4).each do %>
+          <%= "☆" %>
+      <% end %>
+    </h2>
+    <h4 class="card-text"><%= review.body %></h4>
+    <% if review.published == true %>
+    <h4 class="card-text">Status: Published</h4>
+    <% else %>
+    <h4 class="card-text">Status: Unpublished</h4>
+    <%= link_to :Edit, edit_user_review_path(review.tutor, review), class: "btn btn-outline-primary" %>
+    <%= button_to :Cancel, user_review_path(review.tutor, review), method: :delete, class: "btn btn-outline-primary"%>
+    <h4 class="card-text"> Created <%= time_ago_in_words(review.created_at) %></h4>
+    <% end %>
+    </div>
+    <% end %>
+    <% end %>
+    </div>
+<% end %>

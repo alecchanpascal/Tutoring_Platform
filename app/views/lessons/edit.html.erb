@@ -1,0 +1,25 @@
+<%= form_with model: @lesson do |f|%>
+<div>
+    <%= f.label :subject, class: "form-label" %>
+    <%= f.text_field :subject, class: 'form-control'%>
+</div>
+<div>
+    <%= f.label :description, class: "form-label" %>
+    <%= f.text_area :description,  class: 'form-control'%>
+</div>
+
+<div>
+    <%= f.label :cost, class: "form-label" %>
+    <%= f.number_field :cost,  class: 'form-control'%>
+</div>
+
+<div>
+    <%= f.label :time_of_lesson, class: "form-label" %>
+    <%= f.date_select :time_of_lesson%>
+</div>
+<div>
+   <%= f.submit "Create Lesson!", class: "btn btn-outline-primary btn-md"%>
+</div>
+<% end %>
+
+

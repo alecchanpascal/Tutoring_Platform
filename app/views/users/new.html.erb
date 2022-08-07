@@ -1,0 +1,39 @@
+<div class="form-container m-3">
+    <h1>Sign up</h1>
+    <%if @user.errors.any? %>
+        <p> <%= @user.errors.full_messages.join(",")%></p>
+    <% end %>
+
+    <%= form_with model: @user do |f| %>
+        <div class="field">
+            <%= f.label :username%>
+            <%=f.text_field :username, class: "form-control", required: :required%>
+        </div>
+
+        <div class="field">
+            <%= f.label :email%>
+            <%=f.text_field :email, class: "form-control", required: :required%>
+        </div>
+
+        <div class="field">
+            <%= f.label :password%>
+            <%=f.text_field :password, class: "form-control", required: :required%>
+        </div>
+
+        <div class="field">
+            <%= f.label :password_confirmation%>
+            <%=f.text_field :password_confirmation, class: "form-control", required: :required%>
+        </div>
+        <br>
+        <div class="field">
+            <%= f.label :is_tutor, 'Pick One Please 👇', class:"form-check-label", style:"font-size:15px;"%>
+            <div>
+                <%= f.radio_button(:is_tutor, true)%><strong> Tutor </strong>
+            </div>
+            <div>
+                <%= f.radio_button(:is_tutor, false, checked: true)%><strong style="mx-2"> Student </strong>
+            </div>
+        </div>
+        <%= f.submit "Sign up", class: "btn btn-outline-primary my-2"  %>
+    <% end %>
+</div>

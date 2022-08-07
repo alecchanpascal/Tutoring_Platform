@@ -1,0 +1,92 @@
+body {
+    min-height: 100vh;
+    
+  }
+  
+  %d-flex-cnw {
+    display: flex;
+    flex-flow: column nowrap;
+  }
+  %d-flex-rw {
+    display: flex;
+    flex-flow: row wrap;
+  }
+  %d-flex-rnw {
+    display: flex;
+    flex-flow: row nowrap;
+  }
+  
+  .main-container {
+    @extend %d-flex-cnw;
+    justify-content: center;
+    align-items: center;
+    
+  }
+  
+  
+  .lesson-form {
+    @extend %d-flex-cnw;
+    height: 35vh;
+    width: 50vh;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  .btn {
+    width: 150px;
+    height: 50px;
+    @extend %d-flex-rnw;
+    justify-content: center;
+    align-items: center;
+  }
+  .lessons-container {
+    @extend %d-flex-cnw;
+    
+  }
+  .lesson {
+    @extend %d-flex-cnw;
+    width: 50vw;
+    margin: 20px 0;
+  }
+  .lesson-info {
+    @extend %d-flex-rnw;
+    justify-content: space-between;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 170%;
+  }
+  .lesson-container {
+    @extend %d-flex-cnw;
+    width: 80vw;
+    align-items: center;
+    justify-content: center;
+  
+  }
+  .lesson-body {
+    @extend %d-flex-cnw;
+    margin-top: 10px;
+    padding-top: 10px;
+    width: 40vw;
+    align-items: center;
+    height: 10vh;
+  }
+  .card-title ,a:visited,a:hover,a:active{
+    -webkit-backface-visibility:hidden;
+            backface-visibility:hidden;
+      position:relative;
+    transition:0.5s color ease;
+      text-decoration:none;
+      color:#81b3d2;
+      font-size:1.5em;
+  }
+  .card-title a:hover{
+      color: black;
+  }
+
+  .card-title a:link, .card-title a:visited, .card-title a:hover, .card-title a:active { 
+    text-decoration:none; 
+}
+
+
+
+
+  
+ 
